@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "582361824586",
+    "firebase_url": "https://berkowits-cma-default-rtdb.firebaseio.com",
+    "project_id": "berkowits-cma",
+    "storage_bucket": "berkowits-cma.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:582361824586:android:187e0777b9a0c346e515b3",
+        "android_client_info": {
+          "package_name": "berkowits.customer.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWOQ4xfKV1sQ_4jHnE-6fsr3gCnjneTw8"
+        },
+        {
+          "current_key": "AIzaSyDXf0GottR0JWYrQ6D6645cMK_05McYtoE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:582361824586:android:2fbddfaa4a339b1ae515b3",
+        "android_client_info": {
+          "package_name": "com.berkowits.center"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWOQ4xfKV1sQ_4jHnE-6fsr3gCnjneTw8"
+        },
+        {
+          "current_key": "AIzaSyDXf0GottR0JWYrQ6D6645cMK_05McYtoE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

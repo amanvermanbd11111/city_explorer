@@ -65,4 +65,17 @@ class ChatMessageModel extends ChatMessage {
       isOwnMessage: json['userId'] == currentUserId,
     );
   }
+
+  factory ChatMessageModel.fromFirebase(Map<String, dynamic> json, String currentUserId) {
+    return ChatMessageModel(
+      id: json['id'] ?? DateTime.now().millisecondsSinceEpoch.toString(),
+      username: json['username'] ?? 'Anonymous',
+      message: json['message'] ?? '',
+      cityName: json['cityName'] ?? '',
+      timestamp: json['createdAt'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(json['createdAt'])
+          : DateTime.now(),
+      isOwnMessage: json['userId'] == currentUserId,
+    );
+  }
 }

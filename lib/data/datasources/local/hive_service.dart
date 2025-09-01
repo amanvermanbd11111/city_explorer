@@ -7,6 +7,7 @@ class HiveService {
   static const String _chatMessagesBoxName = 'chat_messages_box';
   static const String _placesBoxName = 'places_box';
   static const String _lastSearchedCityBoxName = 'last_searched_city_box';
+  static const String _globalDataBoxName = 'global_data_box';
 
   static Future<void> init() async {
     await Hive.initFlutter();
@@ -23,6 +24,7 @@ class HiveService {
       Hive.openBox<ChatMessageModel>(_chatMessagesBoxName),
       Hive.openBox<String>(_placesBoxName),
       Hive.openBox<String>(_lastSearchedCityBoxName),
+      Hive.openBox(_globalDataBoxName),
     ]);
   }
 
@@ -30,6 +32,7 @@ class HiveService {
   Box<ChatMessageModel> get _chatMessagesBox => Hive.box<ChatMessageModel>(_chatMessagesBoxName);
   Box<String> get _placesBox => Hive.box<String>(_placesBoxName);
   Box<String> get _lastSearchedCityBox => Hive.box<String>(_lastSearchedCityBoxName);
+  Box get _globalDataBox => Hive.box(_globalDataBoxName);
 
   Future<void> saveUser(UserModel user) async {
     await _userBox.put('current_user', user);
@@ -80,6 +83,16 @@ class HiveService {
       _chatMessagesBox.clear(),
       _placesBox.clear(),
       _lastSearchedCityBox.clear(),
+      _globalDataBox.clear(),
     ]);
+  }
+
+  // Generic data storage methods
+  Future<void> saveData(String key, dynamic data) async {
+    await _globalDataBox.put(key, data);
+  }
+
+  dynamic getData(String key) {
+    return _globalDataBox.get(key);
   }
 }

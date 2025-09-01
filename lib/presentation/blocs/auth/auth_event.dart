@@ -19,3 +19,23 @@ class LoginAsGuestEvent extends AuthEvent {
 class CheckAuthStatusEvent extends AuthEvent {}
 
 class LogoutEvent extends AuthEvent {}
+
+class LoginWithFirebaseEvent extends AuthEvent {
+  final String email;
+  final String password;
+
+  const LoginWithFirebaseEvent(this.email, this.password);
+
+  @override
+  List<Object> get props => [email, password];
+}
+
+class SignUpWithFirebaseEvent extends AuthEvent {
+  final String email;
+  final String password;
+
+  const SignUpWithFirebaseEvent(this.email, this.password);
+
+  @override
+  List<Object> get props => [email, password];
+}

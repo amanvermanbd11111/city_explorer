@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../blocs/auth/auth_bloc.dart';
+import '../../blocs/auth/auth_event.dart';
 import '../../blocs/auth/auth_state.dart';
 import '../../blocs/places/places_bloc.dart';
 import '../../blocs/places/places_event.dart';
 import '../../blocs/places/places_state.dart';
+import '../auth/guest_login_screen.dart';
 import '../places/places_search_screen.dart';
 import '../../widgets/search_bar_widget.dart';
 
@@ -24,7 +26,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) {
+        if (state is AuthUnauthenticated) {
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => const GuestLoginScreen()),
+            (route) => false,
+          );
+        }
+      },
+      child: Scaffold(
       appBar: AppBar(
         title: Text('City Explorer'),
         actions: [
@@ -233,6 +244,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
+      ),
     );
   }
 
@@ -306,7 +318,7 @@ class _HomeScreenState extends State<HomeScreen> {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
-                // Handle logout logic here
+                context.read<AuthBloc>().add(LogoutEvent());
               },
               child: Text('Logout'),
             ),

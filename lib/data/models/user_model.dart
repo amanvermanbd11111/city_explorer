@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 import '../../domain/entities/user.dart';
@@ -36,6 +37,14 @@ class UserModel extends User {
       id: DateTime.now().millisecondsSinceEpoch.toString(),
       username: username,
       isGuest: true,
+    );
+  }
+
+  factory UserModel.fromFirebase(firebase_auth.User firebaseUser) {
+    return UserModel(
+      id: firebaseUser.uid,
+      username: firebaseUser.email ?? firebaseUser.displayName ?? 'Firebase User',
+      isGuest: false,
     );
   }
 }
