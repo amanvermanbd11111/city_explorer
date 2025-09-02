@@ -38,15 +38,7 @@ import 'presentation/pages/splash_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
-  // Initialize Firebase
-  await Firebase.initializeApp(
-    options: const FirebaseOptions(
-      apiKey: 'AIzaSyAWOQ4xfKV1sQ_4jHnE-6fsr3gCnjneTw8',
-      appId: '1:582361824586:android:187e0777b9a0c346e515b3',
-      messagingSenderId: '582361824586',
-      projectId: 'berkowits-cma',
-    ),
-  );
+
   
   await HiveService.init();
   runApp(CityExplorerApp());
