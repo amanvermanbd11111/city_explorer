@@ -78,6 +78,7 @@ A Flutter mobile application that lets users discover places in cities, view liv
   - URL: `wss://ws.postman-echo.com/raw`
   - No API key required  
   - Used for real-time chat functionality
+  - 
 
 ## 🏗️ Project Structure
 

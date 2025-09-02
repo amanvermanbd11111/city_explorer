@@ -1,0 +1,238 @@
+{
+  "appTitle": "City Explorer",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "welcome": "Welcome back,",
+  "@welcome": {
+    "description": "Welcome message on home screen"
+  },
+  "searchPlaces": "Search Places",
+  "@searchPlaces": {
+    "description": "Search places button text"
+  },
+  "searchForCity": "Search for a city",
+  "@searchForCity": {
+    "description": "Initial search state message"
+  },
+  "enterCityName": "Enter a city name to find interesting places",
+  "@enterCityName": {
+    "description": "Search instruction text"
+  },
+  "searchingPlaces": "Searching for places...",
+  "@searchingPlaces": {
+    "description": "Loading state message while searching"
+  },
+  "foundPlaces": "Found {count} places in \"{query}\"",
+  "@foundPlaces": {
+    "description": "Search results header",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      },
+      "query": {
+        "type": "String",
+        "example": "Mumbai"
+      }
+    }
+  },
+  "mapView": "Map View",
+  "@mapView": {
+    "description": "Map view button text"
+  },
+  "noPlacesFound": "No places found",
+  "@noPlacesFound": {
+    "description": "Empty search results title"
+  },
+  "noPlacesFoundFor": "No places found for \"{query}\"",
+  "@noPlacesFoundFor": {
+    "description": "Empty search results message",
+    "placeholders": {
+      "query": {
+        "type": "String",
+        "example": "Mumbai"
+      }
+    }
+  },
+  "tryAgain": "Try Again",
+  "@tryAgain": {
+    "description": "Try again button text"
+  },
+  "error": "Error",
+  "@error": {
+    "description": "Error title"
+  },
+  "retry": "Retry",
+  "@retry": {
+    "description": "Retry button text"
+  },
+  "placeDetails": "Place Details",
+  "@placeDetails": {
+    "description": "Place details screen title"
+  },
+  "details": "Details",
+  "@details": {
+    "description": "Details section title"
+  },
+  "weatherInformation": "Weather Information",
+  "@weatherInformation": {
+    "description": "Weather section title"
+  },
+  "loadingWeather": "Loading weather data...",
+  "@loadingWeather": {
+    "description": "Loading weather message"
+  },
+  "temperature": "Temperature",
+  "@temperature": {
+    "description": "Temperature label"
+  },
+  "humidity": "Humidity",
+  "@humidity": {
+    "description": "Humidity label"
+  },
+  "failedToLoadWeather": "Failed to load weather",
+  "@failedToLoadWeather": {
+    "description": "Weather error message"
+  },
+  "joinCityChat": "Join City Chat",
+  "@joinCityChat": {
+    "description": "Chat button text"
+  },
+  "refreshWeather": "Refresh Weather",
+  "@refreshWeather": {
+    "description": "Refresh weather button text"
+  },
+  "favorites": "Favorites",
+  "@favorites": {
+    "description": "Favorites screen title"
+  },
+  "noFavoritesYet": "No Favorites Yet",
+  "@noFavoritesYet": {
+    "description": "Empty favorites title"
+  },
+  "startExploring": "Start exploring places and tap the heart icon to add them to your favorites",
+  "@startExploring": {
+    "description": "Empty favorites instruction"
+  },
+  "favoritePlaces": "{count} favorite place{count, plural, =1{} other{s}}",
+  "@favoritePlaces": {
+    "description": "Favorite places count",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "addedToFavorites": "Added to favorites",
+  "@addedToFavorites": {
+    "description": "Snackbar message for adding to favorites"
+  },
+  "removedFromFavorites": "Removed from favorites",
+  "@removedFromFavorites": {
+    "description": "Snackbar message for removing from favorites"
+  },
+  "clearAllFavorites": "Clear All Favorites",
+  "@clearAllFavorites": {
+    "description": "Clear all favorites dialog title"
+  },
+  "clearFavoritesConfirmation": "Are you sure you want to remove all places from your favorites? This action cannot be undone.",
+  "@clearFavoritesConfirmation": {
+    "description": "Clear favorites confirmation message"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button text"
+  },
+  "clear": "Clear",
+  "@clear": {
+    "description": "Clear button text"
+  },
+  "allFavoritesCleared": "All favorites cleared",
+  "@allFavoritesCleared": {
+    "description": "Snackbar message after clearing all favorites"
+  },
+  "quickActions": "Quick Actions",
+  "@quickActions": {
+    "description": "Quick actions section title on home screen"
+  },
+  "findInterestingPlaces": "Find interesting places in any city",
+  "@findInterestingPlaces": {
+    "description": "Search places card subtitle"
+  },
+  "lastSearch": "Last Search",
+  "@lastSearch": {
+    "description": "Last search card title"
+  },
+  "noRecentSearches": "No recent searches",
+  "@noRecentSearches": {
+    "description": "No recent searches message"
+  },
+  "yourSavedPlaces": "Your saved places",
+  "@yourSavedPlaces": {
+    "description": "Favorites card subtitle"
+  },
+  "cityChat": "City Chat",
+  "@cityChat": {
+    "description": "Chat card title"
+  },
+  "chatWithOtherExplorers": "Chat with other explorers",
+  "@chatWithOtherExplorers": {
+    "description": "Chat card subtitle"
+  },
+  "logout": "Logout",
+  "@logout": {
+    "description": "Logout button text"
+  },
+  "logoutConfirmation": "Are you sure you want to logout?",
+  "@logoutConfirmation": {
+    "description": "Logout confirmation message"
+  },
+  "viewDetails": "View Details",
+  "@viewDetails": {
+    "description": "View details button text"
+  },
+  "showOnMap": "Show on Map",
+  "@showOnMap": {
+    "description": "Show on map button text"
+  },
+  "clearAll": "Clear All",
+  "@clearAll": {
+    "description": "Clear all button text"
+  },
+  "noPlacesToShow": "No places to show on map",
+  "@noPlacesToShow": {
+    "description": "Empty map state title"
+  },
+  "searchPlacesToSeeMap": "Search for places to see them on the map",
+  "@searchPlacesToSeeMap": {
+    "description": "Empty map state message"
+  },
+  "placesIn": "Places in \"{query}\"",
+  "@placesIn": {
+    "description": "Map screen title with query",
+    "placeholders": {
+      "query": {
+        "type": "String",
+        "example": "Mumbai"
+      }
+    }
+  },
+  "placesMap": "Places Map",
+  "@placesMap": {
+    "description": "Map screen title without query"
+  },
+  "loadingFavorites": "Loading favorites...",
+  "@loadingFavorites": {
+    "description": "Loading favorites message"
+  },
+  "switchToLightMode": "Switch to Light Mode",
+  "@switchToLightMode": {
+    "description": "Tooltip for light mode toggle"
+  },
+  "switchToDarkMode": "Switch to Dark Mode",
+  "@switchToDarkMode": {
+    "description": "Tooltip for dark mode toggle"
+  }
+}

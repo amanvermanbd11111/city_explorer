@@ -6,9 +6,17 @@ import '../../blocs/auth/auth_state.dart';
 import '../../blocs/places/places_bloc.dart';
 import '../../blocs/places/places_event.dart';
 import '../../blocs/places/places_state.dart';
+import '../../blocs/theme/theme_bloc.dart';
+import '../../blocs/theme/theme_event.dart';
+import '../../blocs/theme/theme_state.dart';
+import '../../blocs/locale/locale_bloc.dart';
+import '../../blocs/locale/locale_event.dart';
+import '../../blocs/locale/locale_state.dart';
 import '../auth/guest_login_screen.dart';
 import '../places/places_search_screen.dart';
+import '../favorites/favorites_screen.dart';
 import '../../widgets/search_bar_widget.dart';
+import '../../../core/localization/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -37,8 +45,54 @@ class _HomeScreenState extends State<HomeScreen> {
       },
       child: Scaffold(
       appBar: AppBar(
-        title: Text('City Explorer'),
+        title: Text(AppLocalizations.of(context)?.appTitle ?? 'City Explorer'),
         actions: [
+          BlocBuilder<ThemeBloc, ThemeState>(
+            builder: (context, themeState) {
+              bool isDarkMode = false;
+              if (themeState is ThemeLoaded) {
+                isDarkMode = themeState.isDarkMode;
+              }
+              
+              return IconButton(
+                onPressed: () {
+                  context.read<ThemeBloc>().add(ToggleThemeEvent());
+                },
+                icon: Icon(
+                  isDarkMode ? Icons.light_mode : Icons.dark_mode,
+                ),
+                tooltip: isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode',
+              );
+            },
+          ),
+          BlocBuilder<LocaleBloc, LocaleState>(
+            builder: (context, localeState) {
+              String currentLanguage = 'EN';
+              if (localeState is LocaleLoaded) {
+                currentLanguage = localeState.locale.languageCode == 'hi' ? 'HI' : 'EN';
+              }
+              
+              return TextButton(
+                onPressed: () {
+                  final newLocale = currentLanguage == 'EN' ? Locale('hi') : Locale('en');
+                  context.read<LocaleBloc>().add(ChangeLocaleEvent(newLocale));
+                },
+                style: TextButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.white.withOpacity(0.2),
+                  minimumSize: Size(40, 40),
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                ),
+                child: Text(
+                  currentLanguage,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 12,
+                  ),
+                ),
+              );
+            },
+          ),
           BlocBuilder<AuthBloc, AuthState>(
             builder: (context, state) {
               if (state is AuthAuthenticated) {
@@ -117,7 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Welcome back,',
+                                    AppLocalizations.of(context)?.welcome ?? 'Welcome back,',
                                     style: Theme.of(context).textTheme.bodyMedium,
                                   ),
                                   Text(
@@ -154,7 +208,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(height: 32),
               Text(
-                'Quick Actions',
+                AppLocalizations.of(context)?.quickActions ?? 'Quick Actions',
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: Colors.grey.shade800,
@@ -170,8 +224,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     _buildActionCard(
                       context,
                       icon: Icons.search,
-                      title: 'Search Places',
-                      subtitle: 'Find interesting places in any city',
+                      title: AppLocalizations.of(context)?.searchPlaces ?? 'Search Places',
+                      subtitle: AppLocalizations.of(context)?.findInterestingPlaces ?? 'Find interesting places in any city',
                       color: Colors.blue,
                       onTap: () {
                         Navigator.push(
@@ -187,10 +241,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         return _buildActionCard(
                           context,
                           icon: Icons.history,
-                          title: 'Last Search',
+                          title: AppLocalizations.of(context)?.lastSearch ?? 'Last Search',
                           subtitle: state is LastSearchedCityLoaded && state.cityName != null
                               ? state.cityName!
-                              : 'No recent searches',
+                              : AppLocalizations.of(context)?.noRecentSearches ?? 'No recent searches',
                           color: Colors.orange,
                           onTap: state is LastSearchedCityLoaded && state.cityName != null
                               ? () {
@@ -209,15 +263,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     _buildActionCard(
                       context,
-                      icon: Icons.cloud,
-                      title: 'Weather',
-                      subtitle: 'Check weather for any location',
-                      color: Colors.green,
+                      icon: Icons.favorite,
+                      title: AppLocalizations.of(context)?.favorites ?? 'Favorites',
+                      subtitle: AppLocalizations.of(context)?.yourSavedPlaces ?? 'Your saved places',
+                      color: Colors.red,
                       onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => PlacesSearchScreen(),
+                            builder: (context) => const FavoritesScreen(),
                           ),
                         );
                       },
@@ -225,8 +279,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     _buildActionCard(
                       context,
                       icon: Icons.chat,
-                      title: 'City Chat',
-                      subtitle: 'Chat with other explorers',
+                      title: AppLocalizations.of(context)?.cityChat ?? 'City Chat',
+                      subtitle: AppLocalizations.of(context)?.chatWithOtherExplorers ?? 'Chat with other explorers',
                       color: Colors.purple,
                       onTap: () {
                         Navigator.push(
@@ -308,19 +362,19 @@ class _HomeScreenState extends State<HomeScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Logout'),
-          content: Text('Are you sure you want to logout?'),
+          title: Text(AppLocalizations.of(context)?.logout ?? 'Logout'),
+          content: Text(AppLocalizations.of(context)?.logoutConfirmation ?? 'Are you sure you want to logout?'),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: Text('Cancel'),
+              child: Text(AppLocalizations.of(context)?.cancel ?? 'Cancel'),
             ),
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
                 context.read<AuthBloc>().add(LogoutEvent());
               },
-              child: Text('Logout'),
+              child: Text(AppLocalizations.of(context)?.logout ?? 'Logout'),
             ),
           ],
         );

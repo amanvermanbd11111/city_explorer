@@ -17,7 +17,6 @@ PlaceModel _$PlaceModelFromJson(Map<String, dynamic> json) => PlaceModel(
       postcode: json['postcode'] as String?,
       lat: PlaceModel._doubleFromString(json['lat']),
       lon: PlaceModel._doubleFromString(json['lon']),
-      imageUrl: json['imageUrl'] as String?,
     );
 
 Map<String, dynamic> _$PlaceModelToJson(PlaceModel instance) =>
@@ -32,5 +31,4 @@ Map<String, dynamic> _$PlaceModelToJson(PlaceModel instance) =>
       'postcode': instance.postcode,
       'lat': instance.lat,
       'lon': instance.lon,
-      'imageUrl': instance.imageUrl,
     };

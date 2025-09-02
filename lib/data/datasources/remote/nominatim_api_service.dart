@@ -70,7 +70,6 @@ class NominatimApiServiceImpl implements NominatimApiService {
         postcode: address['postcode'],
         lat: double.tryParse(json['lat']?.toString() ?? '0.0') ?? 0.0,
         lon: double.tryParse(json['lon']?.toString() ?? '0.0') ?? 0.0,
-        imageUrl: _getImageUrl(json),
       );
       Logger.debug('Successfully parsed place: ${place.displayName}');
       return place;
@@ -80,7 +79,4 @@ class NominatimApiServiceImpl implements NominatimApiService {
     }
   }
 
-  String? _getImageUrl(Map<String, dynamic> json) {
-    return null;
-  }
 }

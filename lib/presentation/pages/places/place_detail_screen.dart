@@ -4,6 +4,9 @@ import '../../../domain/entities/place.dart';
 import '../../blocs/weather/weather_bloc.dart';
 import '../../blocs/weather/weather_event.dart';
 import '../../blocs/weather/weather_state.dart';
+import '../../blocs/favorites/favorites_bloc.dart';
+import '../../blocs/favorites/favorites_event.dart';
+import '../../blocs/favorites/favorites_state.dart';
 import '../chat/chat_screen.dart';
 
 class PlaceDetailScreen extends StatefulWidget {
@@ -22,6 +25,11 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
     context.read<WeatherBloc>().add(
           GetWeatherEvent(widget.place.lat, widget.place.lon),
         );
+    
+    // Check favorite status
+    final favoritesBloc = context.read<FavoritesBloc>();
+    final placeId = favoritesBloc.favoritesRepository.generatePlaceId(widget.place);
+    favoritesBloc.add(CheckFavoriteStatusEvent(placeId));
   }
 
   @override
@@ -30,6 +38,32 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
       appBar: AppBar(
         title: Text('Place Details'),
         actions: [
+          BlocBuilder<FavoritesBloc, FavoritesState>(
+            builder: (context, state) {
+              final placeId = context.read<FavoritesBloc>().favoritesRepository.generatePlaceId(widget.place);
+              bool isFavorite = false;
+              
+              if (state is FavoritesLoaded) {
+                isFavorite = state.favoriteStatus[placeId] ?? false;
+              }
+              
+              return IconButton(
+                icon: Icon(
+                  isFavorite ? Icons.favorite : Icons.favorite_border,
+                  color: isFavorite ? Colors.red : null,
+                ),
+                onPressed: () {
+                  context.read<FavoritesBloc>().add(ToggleFavoriteEvent(widget.place));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(isFavorite ? 'Removed from favorites' : 'Added to favorites'),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                },
+              );
+            },
+          ),
           IconButton(
             icon: Icon(Icons.chat),
             onPressed: () {
@@ -58,6 +92,7 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
       ),
     );
   }
+
 
   Widget _buildPlaceHeader() {
     return Container(

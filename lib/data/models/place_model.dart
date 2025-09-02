@@ -25,8 +25,6 @@ class PlaceModel extends Place {
   
   @JsonKey(name: 'lon', fromJson: _doubleFromString)
   final double lon;
-  
-  final String? imageUrl;
 
   const PlaceModel({
     required this.displayName,
@@ -39,7 +37,6 @@ class PlaceModel extends Place {
     this.postcode,
     required this.lat,
     required this.lon,
-    this.imageUrl,
   }) : super(
           displayName: displayName,
           addressType: addressType,
@@ -51,7 +48,6 @@ class PlaceModel extends Place {
           postcode: postcode,
           lat: lat,
           lon: lon,
-          imageUrl: imageUrl,
         );
 
   factory PlaceModel.fromJson(Map<String, dynamic> json) =>

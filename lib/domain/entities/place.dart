@@ -11,8 +11,6 @@ class Place extends Equatable {
   final String? postcode;
   final double lat;
   final double lon;
-  final String? imageUrl;
-
   const Place({
     required this.displayName,
     this.addressType,
@@ -24,7 +22,6 @@ class Place extends Equatable {
     this.postcode,
     required this.lat,
     required this.lon,
-    this.imageUrl,
   });
 
   @override
@@ -39,7 +36,6 @@ class Place extends Equatable {
         postcode,
         lat,
         lon,
-        imageUrl,
       ];
 
   String get formattedAddress {

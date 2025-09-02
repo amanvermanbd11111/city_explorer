@@ -14,7 +14,8 @@
       "Bash(r)",
       "Bash(flutter pub:*)",
       "Bash(flutter clean:*)",
-      "Bash(./gradlew --stop)"
+      "Bash(./gradlew --stop)",
+      "Bash(flutter gen-l10n:*)"
     ],
     "deny": [],
     "ask": []
